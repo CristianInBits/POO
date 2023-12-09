@@ -1,4 +1,5 @@
-/**Modificar el programa del ejercicio uno para que salgan por pantalla los
+/**
+ * Modificar el programa del ejercicio uno para que salgan por pantalla los
  * números del cero al diez, mostrando si cada uno de ellos es par o impar.
  */
 
