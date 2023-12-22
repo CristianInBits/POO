@@ -82,5 +82,99 @@
  * indique el
  * valor recibido.
  */
+//package PracticaRectangulo;
 
- 
+public class Rectangulo {
+
+    private Punto inf_izdo, sup_dcho;
+
+    public Rectangulo() {
+        this.inf_izdo = new Punto(0, 0);
+        this.sup_dcho = new Punto(1, 1);
+    }
+
+    public Rectangulo(int base, int altura) {
+        inf_izdo = new Punto(0, 0);
+        if (base > 0 && altura > 0) {
+            sup_dcho = new Punto(base, altura);
+        } else
+            sup_dcho = new Punto(1, 1);
+    }
+
+    public Rectangulo(Punto p1, Punto p2) {
+        if (p1.estaDebajo(p2) && p2.estaDerecha(p1)) {
+            inf_izdo = p1.copia();
+            sup_dcho = p2.copia();
+        } else {
+            inf_izdo = new Punto(0, 0);
+            sup_dcho = new Punto(1, 1);
+        }
+    }
+
+    public Rectangulo(Rectangulo r) {
+        inf_izdo = r.getInfIzdo();
+        sup_dcho = r.getSupDcho();
+    }
+
+    public Punto getInfIzdo() {
+        return inf_izdo.copia();
+    }
+
+    public Punto getSupDcho() {
+        return sup_dcho.copia();
+    }
+
+    public void setInfIzdo(Punto p) {
+        if (p.estaDebajo(sup_dcho) && sup_dcho.estaDerecha(p))
+            inf_izdo = p.copia();
+    }
+
+    public void setSupDcho(Punto p) {
+        if (inf_izdo.estaDebajo(p) && p.estaDerecha(inf_izdo))
+            sup_dcho = p.copia();
+    }
+
+    @Override
+    public String toString() {
+        return ("Inferior Izquierdo " + inf_izdo.toString() + " Superior Derecho " +
+                sup_dcho.toString());
+    }
+
+    public int base() {
+        return (sup_dcho.getX() - inf_izdo.getX());
+    }
+
+    public int altura() {
+        return (sup_dcho.getY() - inf_izdo.getY());
+    }
+
+    public int perimetro() {
+        return base() * 2 + altura() * 2;
+    }
+
+    public int area() {
+        return this.base() * this.altura();
+    }
+
+    public int[] valores() {
+        int[] val = { base(), altura(), area(), perimetro() };
+        return val;
+    }
+
+    public void desplazarX(int i) {
+        if (inf_izdo.desplazarXY(i, 0))
+            sup_dcho.desplazarXY(i, 0);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true; // Comprobación del objeto consigo mismo
+        if (o == null)
+            return false; // Comprobación de que no sea el objeto nulo
+        if (getClass() != o.getClass())
+            return false; // Comprobación de la clase
+        Rectangulo r = (Rectangulo) o;
+        return (this.inf_izdo.equals(r.getInfIzdo()) && this.sup_dcho.equals(r.getSupDcho()));
+    }
+}
