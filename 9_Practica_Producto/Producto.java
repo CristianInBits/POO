@@ -14,6 +14,3 @@
  * producto
  * externo.
  */
-public class Producto {
-
-}
