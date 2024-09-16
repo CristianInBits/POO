@@ -15,7 +15,7 @@ public class Ejercicio10 {
         int dia, mes, año;
         boolean incorrecta;
 
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 200; i++) {
             incorrecta = false;
             dia = (int) (Math.random() * 31 + 1);
             mes = (int) (Math.random() * 12 + 1);
